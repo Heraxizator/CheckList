@@ -1,0 +1,150 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Список дел</title>
+ </head>
+ <body>
+ 	<div id="list">
+		<div id="title">Мой список дел</div>
+		<ul id="menu">
+			<li>
+				<input class="check" type="checkbox"><a>Выучить</a>
+				<input class="input" type="email">
+				<button class="del">Удалить</button>
+				<button class="safe">Сохранить</button>
+				<button class="edit">Редактировать</button>
+			</li>
+			<li><input class="check" type="checkbox"><a>Погулять</a>
+				<input class="input" type="email">
+				<button class="del">Удалить</button>
+				<button class="safe">Сохранить</button>
+				<button class="edit">Редактировать</button>
+			</li>
+			<li><input class="check" type="checkbox"><a>Поcпать</a>
+				<input class="input" type="email">
+				<button class="del">Удалить</button>
+				<button class="safe">Сохранить</button>
+				<button class="edit">Редактировать</button>
+			</li>
+			
+		</ul>
+		<button class="add">Добавить</button>
+	</div>
+ </body>
+
+	
+<script>
+
+	var del = document.getElementsByClassName('del');
+	var safe = document.getElementsByClassName('safe');
+	var edit = document.getElementsByClassName('edit');
+	var add = document.getElementsByClassName('add')[0];
+	var li = document.getElementsByTagName('li');
+	var input = document.getElementsByClassName('input');
+	var al = document.getElementsByTagName('a');
+	var ul = document.getElementsByTagName('ul')[0]
+	var check = document.getElementsByClassName('check');
+	var index = -10;
+	
+	a = [del, safe, edit];
+	
+	function display(elem) {
+		elem.onmouseover = function() {
+			for (let i = 2; i < elem.parentElement.children.length; i++) {
+				elem.parentElement.children[i].style.opacity = 1;
+			}	
+			
+		}
+		
+		elem.onmouseout = function() {
+			for (let i = 2; i < elem.parentElement.children.length; i++) {
+				if (i != index + 2) {
+					elem.parentElement.children[i].style.opacity = 0;
+				}
+
+			}
+			
+			
+		}
+		
+	}
+	
+	
+	
+	function deletor(elem) {
+		elem.onclick = function() {
+			elem.parentElement.style.display = 'none';
+		
+			
+	
+		}
+	
+	}
+	
+	
+	function toSafe(elem, input, al) {
+		if (input.value.length > 1) {
+				al.innerHTML = input.value.split('	')[0];
+				input.style.display = 'none';
+				index = -10;
+
+			}	
+	}
+	
+	function safer(elem, input, al) {
+		elem.onclick = function() {
+			toSafe(elem, input, al);	
+		}
+	}
+	
+	
+	function editor(elem, input) {
+		elem.onclick = function() {
+			input.style.display = 'block';
+			input.value = elem.parentElement.textContent;
+			index = input.tabIndex;
+			
+		}
+		
+	}
+	
+	function adder() {
+		add.onclick = function () {
+			var cli = li[li.length - 1].cloneNode(true);
+			ul.appendChild(cli);
+			al[al.length - 1].innerHTML = 'Новое дело';
+			index = -10;
+			alldisplay();
+		}
+	}
+	
+	adder();
+	
+	function alldisplay() {
+		for (let i = 0; i < a.length; i ++) {
+			for (let j = 0; j < a[i].length; j++) {
+				display(a[i][j]);
+				if (i == 0) {
+					deletor(a[i][j]);
+				}
+
+				if (i == 1){
+					safer(a[i][j], input[j], al[j]);
+				}
+
+				if (i == 2) {
+					editor(a[i][j], input[j]);
+				}
+			}
+		}
+	}
+	
+	alldisplay();
+	
+	
+	
+	
+	
+</script>
+</html>
