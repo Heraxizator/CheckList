@@ -1,0 +1,58 @@
+#title {
+	background: rgba(255, 182, 193, 0.90);
+	padding: 20px;
+	text-align: center;
+	width: 500px;
+	margin: auto;
+		
+}
+
+#menu, .add {
+	margin: auto;
+	display: table;
+}
+
+
+
+li {
+	list-style: none;
+	border: 1px solid rgb(250, 250, 250);
+	padding: 20px;
+	width: 500px;
+	margin-right: 40px;
+	
+		
+}
+
+button {
+	background: white;
+	border: 1px solid rgb(250, 250, 250);
+	padding: 5px;
+	opacity: 0;
+	color: grey;
+	
+	
+}
+
+.add, input {
+	opacity: 1;
+}
+
+.input {
+	display: none;
+	border-radius: 2px;
+	border: 1px solid rgb(240, 240, 240);
+	outline: none;
+}
+
+.check:checked {
+	background: white;
+}
+
+.del, .safe, .edit {
+	margin-left: 2px;
+}
+
+.del, .input {
+	margin-left: 100px;
+}
